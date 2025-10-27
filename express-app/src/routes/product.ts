@@ -3,17 +3,17 @@ import { products } from '../data/product'
 import { Review } from '../data/types';
 const router = express.Router();
 
-router.get('/products', (req: Request, res: Response) => {
+router.get('/', (req: Request, res: Response) => {
     res.json(products);
 });
 
-router.post('/products', (req: Request, res: Response) => {
+router.post('/', (req: Request, res: Response) => {
     const newProduct = req.body;
     products.push(newProduct);
     res.status(201).json(newProduct);
 });
 
-router.get('/products/:id', (req: Request, res: Response) => {
+router.get('/:id', (req: Request, res: Response) => {
     const productId = parseInt(req.params.id, 10);
     const product = products.find(p => p.id === productId);
     if (product) {
@@ -23,7 +23,7 @@ router.get('/products/:id', (req: Request, res: Response) => {
     }
 });
 
-router.post('/products/:id/reviews', (req: Request, res: Response) => {
+router.post('/:id/reviews', (req: Request, res: Response) => {
     const productId = parseInt(req.params.id, 10);
     const product = products.find(p => p.id === productId);
 
